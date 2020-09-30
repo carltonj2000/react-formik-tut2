@@ -3,7 +3,13 @@ import React from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const initialValues = { name: "", email: "", channel: "" };
+const initialValues = {
+  name: "",
+  email: "",
+  channel: "",
+  comments: "",
+  address: "",
+};
 
 const validationSchema = Yup.object({
   name: Yup.string().required("required"),
@@ -35,6 +41,27 @@ const YoutubeForm = () => {
           <label htmlFor="channel">Channel</label>
           <Field type="text" id="channel" name="channel" />
           <ErrorMessage name="channel" />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="comments">Comments</label>
+          <Field as="textarea" type="text" id="comments" name="comments" />
+          <ErrorMessage name="comments" />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="address">Address</label>
+          <Field name="address">
+            {({ field, form, meta }) => {
+              return (
+                <div>
+                  <input type="text" id="address" {...field} />
+                  {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+                </div>
+              );
+            }}
+          </Field>
+          <ErrorMessage name="address" />
         </div>
 
         <button type="submit">Submit</button>
