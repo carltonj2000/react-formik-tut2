@@ -38,7 +38,11 @@ const onSubmit = (values) => {
 
 const YoutubeForm = () => {
   return (
-    <Formik {...{ initialValues, validationSchema, onSubmit }}>
+    <Formik
+      {...{ initialValues, validationSchema, onSubmit }}
+      validateOnChange={false}
+      validateOnBlur={false}
+    >
       <Form>
         <div className="form-control">
           <label htmlFor="name">Name</label>
@@ -112,6 +116,7 @@ const YoutubeForm = () => {
               const { push, remove, form } = filedArrayProps;
               const { values } = form;
               const { phNumbers } = values;
+              console.log("form errors", form.errors);
               return (
                 <div>
                   {phNumbers.map((phNumber, index) => (
