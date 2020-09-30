@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useFormik } from "formik";
+import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const initialValues = { name: "", email: "", channel: "" };
@@ -10,56 +10,36 @@ const validationSchema = Yup.object({
   email: Yup.string().email("invalid email format").required(),
   channel: Yup.string().required("required"),
 });
+
 const onSubmit = (values) => {
   console.log(values);
 };
-const YoutubeForm = () => {
-  const { handleSubmit, errors, touched, getFieldProps } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit,
-  });
 
+const YoutubeForm = () => {
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <Formik {...{ initialValues, validationSchema, onSubmit }}>
+      <Form>
         <div className="form-control">
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" name="name" {...getFieldProps("name")} />
-          {errors.name && touched.name ? (
-            <div className="error">{errors.name}</div>
-          ) : null}
+          <Field type="text" id="name" name="name" />
+          <ErrorMessage name="name" />
         </div>
 
         <div className="form-control">
           <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            {...getFieldProps("email")}
-          />
-          {errors.email && touched.email ? (
-            <div className="error">{errors.email}</div>
-          ) : null}
+          <Field type="email" id="email" name="email" />
+          <ErrorMessage name="email" />
         </div>
 
         <div className="form-control">
           <label htmlFor="channel">Channel</label>
-          <input
-            type="text"
-            id="channel"
-            name="channel"
-            {...getFieldProps("channel")}
-          />
-          {errors.channel && touched.channel ? (
-            <div className="error">{errors.channel}</div>
-          ) : null}
+          <Field type="text" id="channel" name="channel" />
+          <ErrorMessage name="channel" />
         </div>
 
         <button type="submit">Submit</button>
-      </form>
-    </div>
+      </Form>
+    </Formik>
   );
 };
 
