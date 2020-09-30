@@ -11,6 +11,11 @@ const initialValues = {
   channel: "",
   comments: "",
   address: "",
+  social: {
+    facebook: "",
+    twitter: "",
+  },
+  phoneNumbers: ["", ""],
 };
 
 const validationSchema = Yup.object({
@@ -50,7 +55,6 @@ const YoutubeForm = () => {
         <div className="form-control">
           <label htmlFor="comments">Comments</label>
           <Field as="textarea" type="text" id="comments" name="comments" />
-          <ErrorMessage name="comments" />
         </div>
 
         <div className="form-control">
@@ -65,7 +69,26 @@ const YoutubeForm = () => {
               );
             }}
           </Field>
-          <ErrorMessage name="address" />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="facebook">Facebook Profile</label>
+          <Field type="text" id="facebook" name="social.facebook" />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="twitter">Twitter Profile</label>
+          <Field type="text" id="twitter" name="social.twitter" />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="primaryPh">Primary phone number</label>
+          <Field type="text" id="primaryPh" name="phoneNumbers[0]" />
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="secondaryPh">Secondary phone number</label>
+          <Field type="text" id="secondaryPh" name="phoneNumbers[1]" />
         </div>
 
         <button type="submit">Submit</button>
