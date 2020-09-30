@@ -6,4 +6,4 @@ video.
 
 # Progress
 
-Finished video #x on 9/29/20.
+Finished video #10 on 9/29/20.
