@@ -14,7 +14,14 @@ const onSubmit = (values) => {
   console.log(values);
 };
 const YoutubeForm = () => {
-  const { handleSubmit, errors, touched, getFieldProps } = useFormik({
+  const {
+    handleChange,
+    values,
+    handleSubmit,
+    errors,
+    handleBlur,
+    touched,
+  } = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
@@ -25,7 +32,14 @@ const YoutubeForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-control">
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" name="name" {...getFieldProps("name")} />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.name}
+          />
           {errors.name && touched.name ? (
             <div className="error">{errors.name}</div>
           ) : null}
@@ -37,7 +51,9 @@ const YoutubeForm = () => {
             type="email"
             id="email"
             name="email"
-            {...getFieldProps("email")}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.email}
           />
           {errors.email && touched.email ? (
             <div className="error">{errors.email}</div>
@@ -50,7 +66,9 @@ const YoutubeForm = () => {
             type="text"
             id="channel"
             name="channel"
-            {...getFieldProps("channel")}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.channel}
           />
           {errors.channel && touched.channel ? (
             <div className="error">{errors.channel}</div>
