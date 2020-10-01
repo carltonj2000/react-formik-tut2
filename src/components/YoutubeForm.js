@@ -38,8 +38,10 @@ const validateComments = (value) => {
   return error;
 };
 
-const onSubmit = (values) => {
+const onSubmit = (values, onSubmitProps) => {
   console.log(values);
+  //alert(JSON.stringify(values));
+  setTimeout(() => onSubmitProps.setSubmitting(false), 3000);
 };
 
 const YoutubeForm = () => {
@@ -180,7 +182,12 @@ const YoutubeForm = () => {
             <button type="button" onClick={() => formik.validateForm()}>
               Validate all
             </button>
-            <button type="submit" disabled={!(formik.isValid && formik.dirty)}>
+            <button
+              type="submit"
+              disabled={
+                !(formik.isValid && formik.dirty) || formik.isSubmitting
+              }
+            >
               Submit
             </button>
           </Form>
