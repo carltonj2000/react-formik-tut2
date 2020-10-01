@@ -54,8 +54,11 @@ const validateComments = (value) => {
 
 const onSubmit = (values, onSubmitProps) => {
   console.log(values);
-  //alert(JSON.stringify(values));
-  setTimeout(() => onSubmitProps.setSubmitting(false), 3000);
+  setTimeout(() => {
+    onSubmitProps.setSubmitting(false);
+    onSubmitProps.resetForm();
+    // should also clear formValues state
+  }, 3000);
 };
 
 const YoutubeForm = () => {
@@ -199,6 +202,7 @@ const YoutubeForm = () => {
             <button type="button" onClick={() => formik.validateForm()}>
               Validate all
             </button>
+            <button type="reset">Reset</button>
             <button
               type="submit"
               disabled={
