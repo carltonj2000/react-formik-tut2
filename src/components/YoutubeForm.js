@@ -48,6 +48,7 @@ const YoutubeForm = () => {
       {...{ initialValues, validationSchema, onSubmit }}
       //validateOnChange={false}
       //validateOnBlur={false}
+      //validateOnMount // simple validation no fetch
     >
       {(formik) => {
         console.log("formik props", formik);
@@ -179,7 +180,9 @@ const YoutubeForm = () => {
             <button type="button" onClick={() => formik.validateForm()}>
               Validate all
             </button>
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={!(formik.isValid && formik.dirty)}>
+              Submit
+            </button>
           </Form>
         );
       }}
