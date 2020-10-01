@@ -26,6 +26,20 @@ const initialValues = {
   phNumbers: [""],
 };
 
+const savedValues = {
+  name: "Carlton",
+  email: "carlton.joseph@gmail.com",
+  channel: "carltonj2000",
+  comments: "Welcome",
+  address: "",
+  social: {
+    facebook: "",
+    twitter: "",
+  },
+  phoneNumbers: ["", ""],
+  phNumbers: [""],
+};
+
 const validationSchema = Yup.object({
   name: Yup.string().required("required"),
   email: Yup.string().email("invalid email format").required(),
@@ -45,9 +59,12 @@ const onSubmit = (values, onSubmitProps) => {
 };
 
 const YoutubeForm = () => {
+  const [formValues, formValuesSet] = React.useState(null);
   return (
     <Formik
-      {...{ initialValues, validationSchema, onSubmit }}
+      initialValues={formValues || initialValues}
+      enableReinitialize
+      {...{ validationSchema, onSubmit }}
       //validateOnChange={false}
       //validateOnBlur={false}
       //validateOnMount // simple validation no fetch
@@ -185,10 +202,15 @@ const YoutubeForm = () => {
             <button
               type="submit"
               disabled={
-                !(formik.isValid && formik.dirty) || formik.isSubmitting
+                //!(formik.isValid && formik.dirty) || formik.isSubmitting
+                !formik.isValid || formik.isSubmitting
               }
             >
               Submit
+            </button>
+            <br />
+            <button type="button" onClick={() => formValuesSet(savedValues)}>
+              Load Saved Data
             </button>
           </Form>
         );
