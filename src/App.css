@@ -33,3 +33,9 @@ select {
 .error {
   color: red;
 }
+
+input + label {
+  font-weight: bold;
+  display: inline-flex;
+  margin-right: 20px;
+}
