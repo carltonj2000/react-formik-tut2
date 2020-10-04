@@ -6,16 +6,22 @@ import FormikControls from "./FormikControls";
 
 function FormikContainer() {
   const selectOptions = [
-    { value: "", option: "Select an option" },
-    { value: "option1", option: "Option 1" },
-    { value: "option2", option: "Option 2" },
-    { value: "option3", option: "Option 3" },
+    { value: "", text: "Select an option" },
+    { value: "option1", text: "Option 1" },
+    { value: "option2", text: "Option 2" },
+    { value: "option3", text: "Option 3" },
   ];
 
   const radioOptions = [
-    { value: "rOption1", name: "Radio Option 1" },
-    { value: "rOption2", name: "Radio Option 2" },
-    { value: "rOption3", name: "Radio Option 3" },
+    { value: "rOption1", text: "Radio 1" },
+    { value: "rOption2", text: "Radio 2" },
+    { value: "rOption3", text: "Radio 3" },
+  ];
+
+  const checkBoxOptions = [
+    { value: "cbOption1", text: "Checkbox 1" },
+    { value: "cbOption2", text: "Checkbox 2" },
+    { value: "cbOption3", text: "Checkbox 3" },
   ];
 
   const initialValues = {
@@ -23,6 +29,8 @@ function FormikContainer() {
     description: "",
     selectOption: "",
     radioOption: "",
+    checkBoxOptions: [],
+    date: new Date(),
   };
 
   const validationSchema = Yup.object({
@@ -30,6 +38,8 @@ function FormikContainer() {
     description: Yup.string().required(),
     selectOption: Yup.string().required(),
     radioOption: Yup.string().required(),
+    checkBoxOptions: Yup.array().required(),
+    date: Yup.date().required(),
   });
 
   const onSubmit = (values) => console.log("Form data", values);
@@ -61,6 +71,13 @@ function FormikContainer() {
             label="Radio Topic"
             options={radioOptions}
           />
+          <FormikControls
+            control="checkbox"
+            name="checkBoxOptions"
+            label="Check Box Group Name"
+            options={checkBoxOptions}
+          />
+          <FormikControls control="date" name="date" label="Select Date" />
           <button type="submit">Submit</button>
         </Form>
       )}

@@ -9,9 +9,9 @@ function Select(props) {
     <div className="form-control">
       <label htmlFor={name}>{label}</label>
       <Field as="select" id={name} name={name} {...rest}>
-        {options.map(({ value, option }) => (
+        {options.map(({ value, text }) => (
           <option key={value} {...{ value }}>
-            {option}
+            {text}
           </option>
         ))}
       </Field>
