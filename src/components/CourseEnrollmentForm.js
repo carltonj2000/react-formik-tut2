@@ -39,12 +39,7 @@ function CourseEnrollmentForm() {
     <Formik {...{ initialValues, validationSchema, onSubmit }}>
       {(formik) => (
         <Form>
-          <FormikControls
-            control="input"
-            type="email"
-            name="email"
-            label="Email"
-          />
+          <FormikControls control="inputChakra" name="email" label="Email" />
           <FormikControls control="textarea" name="bio" label="Bio" />
           <FormikControls
             control="select"

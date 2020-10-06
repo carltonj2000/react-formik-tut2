@@ -1,4 +1,5 @@
 import React from "react";
+import ChakraInput from "./ChakraInput";
 import CheckBox from "./CheckBox";
 import DatePkr from "./DatePkr";
 import Input from "./Input";
@@ -12,6 +13,8 @@ function FormikControls(props) {
   switch (control) {
     case "input":
       return <Input {...rest} />;
+    case "inputChakra":
+      return <ChakraInput {...rest} />;
     case "textarea":
       return <TextArea {...rest} />;
     case "select":
